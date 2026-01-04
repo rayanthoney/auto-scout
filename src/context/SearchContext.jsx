@@ -12,10 +12,10 @@ export function SearchProvider({ children }) {
 
     const [filters, setFilters] = useState({
         priceMin: 0,
-        priceMax: 100000,
-        yearMin: 2015,
-        yearMax: 2024,
-        mileageMax: 100000,
+        priceMax: 500000,
+        yearMin: 1990,
+        yearMax: new Date().getFullYear() + 1,
+        mileageMax: 500000,
     });
 
     const [sortBy, setSortBy] = useState('price-asc');
@@ -29,12 +29,12 @@ export function SearchProvider({ children }) {
         // Filter by search params
         if (searchParams.make) {
             data = data.filter((v) =>
-                v.make.toLowerCase().includes(searchParams.make.toLowerCase()),
+                v.make.toLowerCase().includes(searchParams.make.trim().toLowerCase()),
             );
         }
         if (searchParams.model) {
             data = data.filter((v) =>
-                v.model.toLowerCase().includes(searchParams.model.toLowerCase()),
+                v.model.toLowerCase().includes(searchParams.model.trim().toLowerCase()),
             );
         }
 
@@ -86,7 +86,6 @@ export function SearchProvider({ children }) {
         filters,
         setFilters,
         sortBy,
-        setSortBy,
         setSortBy,
         results,
         setResults,

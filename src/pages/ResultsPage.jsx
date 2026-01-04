@@ -7,7 +7,7 @@ import Card from '../components/ui/Card';
 import { Loader2, Sparkles, AlertCircle } from 'lucide-react';
 
 export default function ResultsPage() {
-    const { searchParams, setResults, paginatedResults, currentPage, setCurrentPage, totalPages, filteredResults } = useSearch();
+    const { searchParams, results, setResults, setFilters, paginatedResults, currentPage, setCurrentPage, totalPages, filteredResults } = useSearch();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [searchInfo, setSearchInfo] = useState(null);
@@ -24,8 +24,8 @@ export default function ResultsPage() {
 
         try {
             const params = {
-                make: searchParams.make,
-                model: searchParams.model,
+                make: searchParams.make.trim(),
+                model: searchParams.model.trim(),
                 yearMin: parseInt(searchParams.yearMin) || 2015,
                 yearMax: parseInt(searchParams.yearMax) || new Date().getFullYear(),
                 priceMin: parseInt(searchParams.priceMin) || 0,
@@ -42,6 +42,16 @@ export default function ResultsPage() {
                 cached: response.cached,
                 cacheAge: response.cacheAge
             });
+
+            // Sync filters with search params
+            setFilters(prev => ({
+                ...prev,
+                priceMin: params.priceMin,
+                priceMax: params.priceMax,
+                yearMin: params.yearMin,
+                yearMax: params.yearMax,
+            }));
+
             setCurrentPage(1); // Reset to first page on new search
         } catch (err) {
             setError(err.message || 'Failed to search vehicles');
@@ -128,13 +138,12 @@ export default function ResultsPage() {
                     <FilterPanel />
                 </div>
 
-                {/* Results Grid */}
-                <div className="lg:col-span-3">
+                <div className="lg:col-span-3 animate-fade-in">
                     {paginatedResults.length > 0 ? (
                         <>
                             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-                                {paginatedResults.map((vehicle, index) => (
-                                    <VehicleCard key={index} vehicle={vehicle} />
+                                {paginatedResults.map((vehicle) => (
+                                    <VehicleCard key={vehicle.id} vehicle={vehicle} />
                                 ))}
                             </div>
 

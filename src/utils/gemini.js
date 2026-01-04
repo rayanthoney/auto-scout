@@ -108,6 +108,12 @@ Return ONLY the JSON array. Do not include markdown formatting like \`\`\`json.`
             );
 
             if (listings.length > 0) {
+                // Add IDs to listings
+                listings = listings.map((item, index) => ({
+                    ...item,
+                    id: item.id || `ai_${Date.now()}_${index}`,
+                }));
+
                 console.log(`✅ AI returned ${listings.length} listings`);
                 return listings;
             }
