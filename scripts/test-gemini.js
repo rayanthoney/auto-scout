@@ -1,4 +1,4 @@
-import { initializeGemini, getGeminiModel, searchCarListings } from './src/utils/gemini.js';
+import { initializeGemini, getGeminiModel, searchCarListings } from '../src/utils/gemini.js';
 
 /**
  * Test script to verify Gemini API integration
