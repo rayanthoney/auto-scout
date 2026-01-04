@@ -20,23 +20,26 @@ export function SearchProvider({ children }) {
 
     const [sortBy, setSortBy] = useState('price-asc');
 
+    const [results, setResults] = useState([]);
+
     const filteredResults = useMemo(() => {
-        let results = [...mockVehicles];
+        if (!results.length) return [];
+        let data = [...results];
 
         // Filter by search params
         if (searchParams.make) {
-            results = results.filter((v) =>
+            data = data.filter((v) =>
                 v.make.toLowerCase().includes(searchParams.make.toLowerCase()),
             );
         }
         if (searchParams.model) {
-            results = results.filter((v) =>
+            data = data.filter((v) =>
                 v.model.toLowerCase().includes(searchParams.model.toLowerCase()),
             );
         }
 
         // Apply filters
-        results = results.filter(
+        data = data.filter(
             (v) =>
                 v.price >= filters.priceMin &&
                 v.price <= filters.priceMax &&
@@ -48,23 +51,34 @@ export function SearchProvider({ children }) {
         // Apply sorting
         switch (sortBy) {
             case 'price-asc':
-                results.sort((a, b) => a.price - b.price);
+                data.sort((a, b) => a.price - b.price);
                 break;
             case 'price-desc':
-                results.sort((a, b) => b.price - a.price);
+                data.sort((a, b) => b.price - a.price);
                 break;
             case 'year-desc':
-                results.sort((a, b) => b.year - a.year);
+                data.sort((a, b) => b.year - a.year);
                 break;
             case 'mileage-asc':
-                results.sort((a, b) => a.mileage - b.mileage);
+                data.sort((a, b) => a.mileage - b.mileage);
                 break;
             default:
                 break;
         }
 
-        return results;
-    }, [searchParams, filters, sortBy]);
+        return data;
+    }, [results, searchParams, filters, sortBy]);
+
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 12;
+
+    const paginatedResults = useMemo(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        return filteredResults.slice(startIndex, startIndex + itemsPerPage);
+    }, [filteredResults, currentPage]);
+
+    const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
 
     const value = {
         searchParams,
@@ -73,7 +87,14 @@ export function SearchProvider({ children }) {
         setFilters,
         sortBy,
         setSortBy,
-        results: filteredResults,
+        setSortBy,
+        results,
+        setResults,
+        filteredResults,
+        paginatedResults,
+        currentPage,
+        setCurrentPage,
+        totalPages,
     };
 
     return (

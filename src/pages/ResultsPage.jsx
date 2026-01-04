@@ -7,8 +7,7 @@ import Card from '../components/ui/Card';
 import { Loader2, Sparkles, AlertCircle } from 'lucide-react';
 
 export default function ResultsPage() {
-    const { searchParams } = useSearch();
-    const [results, setResults] = useState([]);
+    const { searchParams, setResults, paginatedResults, currentPage, setCurrentPage, totalPages, filteredResults } = useSearch();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [searchInfo, setSearchInfo] = useState(null);
@@ -43,6 +42,7 @@ export default function ResultsPage() {
                 cached: response.cached,
                 cacheAge: response.cacheAge
             });
+            setCurrentPage(1); // Reset to first page on new search
         } catch (err) {
             setError(err.message || 'Failed to search vehicles');
             setResults([]);
@@ -130,17 +130,42 @@ export default function ResultsPage() {
 
                 {/* Results Grid */}
                 <div className="lg:col-span-3">
-                    {results.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                            {results.map((vehicle, index) => (
-                                <VehicleCard key={index} vehicle={vehicle} />
-                            ))}
-                        </div>
+                    {paginatedResults.length > 0 ? (
+                        <>
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                                {paginatedResults.map((vehicle, index) => (
+                                    <VehicleCard key={index} vehicle={vehicle} />
+                                ))}
+                            </div>
+
+                            {/* Pagination Controls */}
+                            {totalPages > 1 && (
+                                <div className="flex justify-center items-center gap-4">
+                                    <button
+                                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                                        disabled={currentPage === 1}
+                                        className="px-4 py-2 rounded-lg border border-neutral-300 disabled:opacity-50 hover:bg-neutral-50"
+                                    >
+                                        Previous
+                                    </button>
+                                    <span className="text-neutral-600">
+                                        Page {currentPage} of {totalPages}
+                                    </span>
+                                    <button
+                                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                                        disabled={currentPage === totalPages}
+                                        className="px-4 py-2 rounded-lg border border-neutral-300 disabled:opacity-50 hover:bg-neutral-50"
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                            )}
+                        </>
                     ) : (
                         <Card className="text-center py-12">
                             <p className="text-neutral-500 text-lg">
                                 No vehicles found matching your criteria. Try adjusting your
-                                search parameters.
+                                search parameters or filters.
                             </p>
                         </Card>
                     )}
