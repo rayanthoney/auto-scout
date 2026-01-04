@@ -1,5 +1,6 @@
 export const mockVehicles = [
     {
+        id: '1',
         year: 2022,
         make: 'Toyota',
         model: 'Camry',
@@ -19,6 +20,7 @@ export const mockVehicles = [
         seller: { name: 'Toyota of LA', type: 'dealer' }
     },
     {
+        id: '2',
         year: 2021,
         make: 'Honda',
         model: 'Accord',
@@ -38,6 +40,7 @@ export const mockVehicles = [
         seller: { name: 'Honda San Diego', type: 'dealer' }
     },
     {
+        id: '3',
         year: 2023,
         make: 'Toyota',
         model: 'RAV4',
@@ -57,6 +60,7 @@ export const mockVehicles = [
         seller: { name: 'SF Auto', type: 'dealer' }
     },
     {
+        id: '4',
         year: 2020,
         make: 'Honda',
         model: 'CR-V',
@@ -76,6 +80,7 @@ export const mockVehicles = [
         seller: { name: 'Sacramento Honda', type: 'dealer' }
     },
     {
+        id: '5',
         year: 2022,
         make: 'Ford',
         model: 'F-150',
@@ -95,6 +100,7 @@ export const mockVehicles = [
         seller: { name: 'Phoenix Ford', type: 'dealer' }
     },
     {
+        id: '6',
         year: 2021,
         make: 'Toyota',
         model: 'Corolla',
@@ -114,6 +120,7 @@ export const mockVehicles = [
         seller: { name: 'Vegas Auto', type: 'dealer' }
     },
     {
+        id: '7',
         year: 2023,
         make: 'Honda',
         model: 'Civic',
@@ -133,6 +140,7 @@ export const mockVehicles = [
         seller: { name: 'Seattle Honda', type: 'dealer' }
     },
     {
+        id: '8',
         year: 2022,
         make: 'Toyota',
         model: 'Highlander',
@@ -152,6 +160,7 @@ export const mockVehicles = [
         seller: { name: 'PDX Toyota', type: 'dealer' }
     },
     {
+        id: '9',
         year: 2020,
         make: 'Ford',
         model: 'Explorer',
@@ -171,6 +180,7 @@ export const mockVehicles = [
         seller: { name: 'Mile High Ford', type: 'dealer' }
     },
     {
+        id: '10',
         year: 2021,
         make: 'Honda',
         model: 'Pilot',

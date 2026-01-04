@@ -162,12 +162,65 @@ function getMockListings(params) {
     if (priceMin) results = results.filter(v => v.price >= parseInt(priceMin));
     if (priceMax) results = results.filter(v => v.price <= parseInt(priceMax));
 
-    // Add metadata
+    // If strict filtering returned no results, generate synthetic mock data
+    if (results.length === 0) {
+        return generateSyntheticMocks(params);
+    }
+
+    // Add metadata to static mocks
     return results.map(v => ({
         ...v,
         is_mock: true,
         source: `${v.source} (Mock)`
     }));
+}
+
+/**
+ * Generate synthetic mock data matching params
+ */
+function generateSyntheticMocks(params) {
+    const { make, model, yearMin, yearMax, priceMin, priceMax, location } = params;
+    const count = 5; // Generate 5 examples
+    const results = [];
+
+    const startYear = parseInt(yearMin) || 2015;
+    const endYear = parseInt(yearMax) || 2024;
+    const minPrice = parseInt(priceMin) || 15000;
+    const maxPrice = parseInt(priceMax) || 45000;
+
+    for (let i = 0; i < count; i++) {
+        const year = Math.floor(Math.random() * (endYear - startYear + 1)) + startYear;
+        const price = Math.floor(Math.random() * (maxPrice - minPrice + 1)) + minPrice;
+
+        results.push({
+            id: `mock_synthetic_${Date.now()}_${i}`,
+            year,
+            make: make || 'Generic',
+            model: model || 'Car',
+            trim: ['LE', 'XLE', 'SE', 'Limited', 'Touring'][Math.floor(Math.random() * 5)],
+            price,
+            mileage: Math.floor(Math.random() * 80000) + 5000,
+            location: {
+                city: location || 'Anytown',
+                state: 'CA',
+                zip: typeof location === 'string' && location.match(/^\d{5}$/) ? location : '90210'
+            },
+            features: {
+                transmission: 'Automatic',
+                drivetrain: ['FWD', 'AWD', 'RWD'][Math.floor(Math.random() * 3)],
+                exterior_color: ['Silver', 'Black', 'White', 'Blue', 'Red'][Math.floor(Math.random() * 5)],
+                fuel_type: 'Gasoline'
+            },
+            images: [`https://via.placeholder.com/400x300?text=${year}+${make}+${model}`],
+            listing_url: `https://example.com/search?q=${make}+${model}`,
+            source: 'Simulated Listing',
+            seller: { name: 'Example Motors', type: 'dealer' },
+            is_mock: true,
+            ai_generated: false
+        });
+    }
+
+    return results;
 }
 
 /**

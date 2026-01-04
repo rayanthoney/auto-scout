@@ -76,7 +76,7 @@ export default function VehicleCard({ vehicle }) {
                             {formatPrice(vehicle.price)}
                         </p>
                     </div>
-                    {vehicle.listing_url ? (
+                    {vehicle.listing_url && vehicle.listing_url !== 'url_to_listing' && vehicle.listing_url.startsWith('http') ? (
                         <a
                             href={vehicle.listing_url}
                             target="_blank"
@@ -89,7 +89,7 @@ export default function VehicleCard({ vehicle }) {
                             </Button>
                         </a>
                     ) : (
-                        <Link to={`/listing/${vehicle.id}`}>
+                        <Link to={`/listing/${vehicle.id}`} state={{ vehicle }}>
                             <Button size="sm">View Details</Button>
                         </Link>
                     )}

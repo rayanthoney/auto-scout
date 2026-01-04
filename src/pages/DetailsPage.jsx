@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, MapPin, Gauge, Calendar, Fuel, Cog } from 'lucide-react';
 import { mockVehicles } from '../data/mockVehicles';
 import Button from '../components/ui/Button';
@@ -6,7 +6,10 @@ import Card from '../components/ui/Card';
 
 export default function DetailsPage() {
     const { id } = useParams();
-    const vehicle = mockVehicles.find((v) => v.id === id);
+    const location = useLocation();
+
+    // Try to get vehicle from location state (AI results), otherwise fallback to id lookup (legacy)
+    const vehicle = location.state?.vehicle || mockVehicles.find((v) => v.id === id);
 
     if (!vehicle) {
         return (
