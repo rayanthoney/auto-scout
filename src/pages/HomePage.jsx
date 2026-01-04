@@ -13,6 +13,11 @@ export default function HomePage() {
         make: '',
         model: '',
         zipCode: '',
+        yearMin: '',
+        yearMax: '',
+        priceMin: '',
+        priceMax: '',
+        radius: '50',
     });
 
     const handleSearch = (e) => {
@@ -50,20 +55,22 @@ export default function HomePage() {
                 >
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                         <Input
-                            label="Make"
+                            label="Make *"
                             placeholder="e.g., Toyota"
                             value={formData.make}
                             onChange={(e) =>
                                 setFormData({ ...formData, make: e.target.value })
                             }
+                            required
                         />
                         <Input
-                            label="Model"
+                            label="Model *"
                             placeholder="e.g., Camry"
                             value={formData.model}
                             onChange={(e) =>
                                 setFormData({ ...formData, model: e.target.value })
                             }
+                            required
                         />
                         <Input
                             label="Zip Code"
@@ -74,9 +81,69 @@ export default function HomePage() {
                             }
                         />
                     </div>
+
+                    {/* Advanced Filters */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                        <Input
+                            label="Min Year"
+                            type="number"
+                            placeholder="2015"
+                            value={formData.yearMin}
+                            onChange={(e) =>
+                                setFormData({ ...formData, yearMin: e.target.value })
+                            }
+                        />
+                        <Input
+                            label="Max Year"
+                            type="number"
+                            placeholder={new Date().getFullYear().toString()}
+                            value={formData.yearMax}
+                            onChange={(e) =>
+                                setFormData({ ...formData, yearMax: e.target.value })
+                            }
+                        />
+                        <Input
+                            label="Min Price"
+                            type="number"
+                            placeholder="$10,000"
+                            value={formData.priceMin}
+                            onChange={(e) =>
+                                setFormData({ ...formData, priceMin: e.target.value })
+                            }
+                        />
+                        <Input
+                            label="Max Price"
+                            type="number"
+                            placeholder="$50,000"
+                            value={formData.priceMax}
+                            onChange={(e) =>
+                                setFormData({ ...formData, priceMax: e.target.value })
+                            }
+                        />
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-neutral-700 mb-2">
+                            Search Radius
+                        </label>
+                        <select
+                            className="w-full px-4 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                            value={formData.radius}
+                            onChange={(e) =>
+                                setFormData({ ...formData, radius: e.target.value })
+                            }
+                        >
+                            <option value="25">25 miles</option>
+                            <option value="50">50 miles</option>
+                            <option value="100">100 miles</option>
+                            <option value="200">200 miles</option>
+                            <option value="500">Any distance</option>
+                        </select>
+                    </div>
+
                     <Button type="submit" size="lg" className="w-full">
                         <Search size={20} className="inline mr-2" />
-                        Search Vehicles
+                        Search Vehicles with AI
                     </Button>
                 </form>
             </section>
