@@ -1,7 +1,5 @@
 export const mockVehicles = [
     {
-        id: '1',
-        source: 'AutoTrader',
         year: 2022,
         make: 'Toyota',
         model: 'Camry',
@@ -12,16 +10,15 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: 'FWD',
-            exteriorColor: 'Silver',
-            interiorColor: 'Black',
-            fuelType: 'Gasoline',
-            bodyStyle: 'Sedan',
+            exterior_color: 'Silver',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400',
+        images: ['https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=400'],
+        listing_url: 'https://example.com/listing/1',
+        source: 'AutoTrader',
+        seller: { name: 'Toyota of LA', type: 'dealer' }
     },
     {
-        id: '2',
-        source: 'Cars.com',
         year: 2021,
         make: 'Honda',
         model: 'Accord',
@@ -32,16 +29,15 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: 'FWD',
-            exteriorColor: 'Blue',
-            interiorColor: 'Gray',
-            fuelType: 'Gasoline',
-            bodyStyle: 'Sedan',
+            exterior_color: 'Blue',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=400',
+        images: ['https://images.unsplash.com/photo-1590362891991-f776e747a588?w=400'],
+        listing_url: 'https://example.com/listing/2',
+        source: 'Cars.com',
+        seller: { name: 'Honda San Diego', type: 'dealer' }
     },
     {
-        id: '3',
-        source: 'CarGurus',
         year: 2023,
         make: 'Toyota',
         model: 'RAV4',
@@ -52,16 +48,15 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: 'AWD',
-            exteriorColor: 'White',
-            interiorColor: 'Beige',
-            fuelType: 'Gasoline',
-            bodyStyle: 'SUV',
+            exterior_color: 'White',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400',
+        images: ['https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400'],
+        listing_url: 'https://example.com/listing/3',
+        source: 'CarGurus',
+        seller: { name: 'SF Auto', type: 'dealer' }
     },
     {
-        id: '4',
-        source: 'AutoTrader',
         year: 2020,
         make: 'Honda',
         model: 'CR-V',
@@ -72,16 +67,15 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: 'AWD',
-            exteriorColor: 'Gray',
-            interiorColor: 'Black',
-            fuelType: 'Gasoline',
-            bodyStyle: 'SUV',
+            exterior_color: 'Gray',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400',
+        images: ['https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=400'],
+        listing_url: 'https://example.com/listing/4',
+        source: 'AutoTrader',
+        seller: { name: 'Sacramento Honda', type: 'dealer' }
     },
     {
-        id: '5',
-        source: 'Cars.com',
         year: 2022,
         make: 'Ford',
         model: 'F-150',
@@ -92,16 +86,15 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: '4WD',
-            exteriorColor: 'Black',
-            interiorColor: 'Gray',
-            fuelType: 'Gasoline',
-            bodyStyle: 'Truck',
+            exterior_color: 'Black',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400',
+        images: ['https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400'],
+        listing_url: 'https://example.com/listing/5',
+        source: 'Cars.com',
+        seller: { name: 'Phoenix Ford', type: 'dealer' }
     },
     {
-        id: '6',
-        source: 'CarGurus',
         year: 2021,
         make: 'Toyota',
         model: 'Corolla',
@@ -112,16 +105,15 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: 'FWD',
-            exteriorColor: 'Red',
-            interiorColor: 'Black',
-            fuelType: 'Gasoline',
-            bodyStyle: 'Sedan',
+            exterior_color: 'Red',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=400',
+        images: ['https://images.unsplash.com/photo-1623869675781-80aa31012a5a?w=400'],
+        listing_url: 'https://example.com/listing/6',
+        source: 'CarGurus',
+        seller: { name: 'Vegas Auto', type: 'dealer' }
     },
     {
-        id: '7',
-        source: 'AutoTrader',
         year: 2023,
         make: 'Honda',
         model: 'Civic',
@@ -132,16 +124,15 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: 'FWD',
-            exteriorColor: 'Silver',
-            interiorColor: 'Black',
-            fuelType: 'Gasoline',
-            bodyStyle: 'Sedan',
+            exterior_color: 'Silver',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400',
+        images: ['https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400'],
+        listing_url: 'https://example.com/listing/7',
+        source: 'AutoTrader',
+        seller: { name: 'Seattle Honda', type: 'dealer' }
     },
     {
-        id: '8',
-        source: 'Cars.com',
         year: 2022,
         make: 'Toyota',
         model: 'Highlander',
@@ -152,16 +143,15 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: 'AWD',
-            exteriorColor: 'Blue',
-            interiorColor: 'Tan',
-            fuelType: 'Gasoline',
-            bodyStyle: 'SUV',
+            exterior_color: 'Blue',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400',
+        images: ['https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400'],
+        listing_url: 'https://example.com/listing/8',
+        source: 'Cars.com',
+        seller: { name: 'PDX Toyota', type: 'dealer' }
     },
     {
-        id: '9',
-        source: 'CarGurus',
         year: 2020,
         make: 'Ford',
         model: 'Explorer',
@@ -172,16 +162,15 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: 'AWD',
-            exteriorColor: 'White',
-            interiorColor: 'Black',
-            fuelType: 'Gasoline',
-            bodyStyle: 'SUV',
+            exterior_color: 'White',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?w=400',
+        images: ['https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?w=400'],
+        listing_url: 'https://example.com/listing/9',
+        source: 'CarGurus',
+        seller: { name: 'Mile High Ford', type: 'dealer' }
     },
     {
-        id: '10',
-        source: 'AutoTrader',
         year: 2021,
         make: 'Honda',
         model: 'Pilot',
@@ -192,11 +181,12 @@ export const mockVehicles = [
         features: {
             transmission: 'Automatic',
             drivetrain: 'AWD',
-            exteriorColor: 'Gray',
-            interiorColor: 'Black',
-            fuelType: 'Gasoline',
-            bodyStyle: 'SUV',
+            exterior_color: 'Gray',
+            fuel_type: 'Gasoline'
         },
-        image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400',
-    },
+        images: ['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400'],
+        listing_url: 'https://example.com/listing/10',
+        source: 'AutoTrader',
+        seller: { name: 'Austin Honda', type: 'dealer' }
+    }
 ];

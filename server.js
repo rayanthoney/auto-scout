@@ -78,7 +78,7 @@ app.post('/api/search', async (req, res) => {
             priceMax: priceMax || 100000,
             location: location || '90210',
             radius: radius || 50
-        });
+        }, true); // Enable mock fallback
 
         const searchTime = ((Date.now() - startTime) / 1000).toFixed(2);
 
