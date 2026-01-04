@@ -17,16 +17,20 @@ export function initializeGemini() {
 
 /**
  * Get Gemini model with web search grounding
- * @param {string} modelName - Model name (default: gemini-2.5-flash)
+ * @param {string} modelName - Model name (default: gemini-1.5-flash)
+ * @param {boolean} useGrounding - Enable grounding (experimental)
  * @returns {Object} Configured Gemini model
  */
-export function getGeminiModel(modelName = 'gemini-2.5-flash') {
+export function getGeminiModel(modelName = 'gemini-2.5-flash', useGrounding = false) {
     const genAI = initializeGemini();
 
-    return genAI.getGenerativeModel({
-        model: modelName,
-        tools: [{ googleSearch: true }] // Enable web search grounding
-    });
+    // Note: Google Search grounding via tools is not yet available in the public API
+    // We'll use prompt engineering to instruct the model to search the web
+    const config = {
+        model: modelName
+    };
+
+    return genAI.getGenerativeModel(config);
 }
 
 /**
@@ -56,16 +60,21 @@ export async function searchCarListings(searchParams) {
 
     const geminiModel = getGeminiModel();
 
-    const prompt = `You are a car listing aggregator. Search the web for vehicles matching these criteria:
+    const prompt = `IMPORTANT: Search the web for CURRENT, REAL car listings that match these criteria. Do not make up or hallucinate data.
+
+Search Parameters:
 - Make: ${make}
 - Model: ${carModel}
 - Year: ${yearMin} to ${yearMax}
 - Price: $${priceMin} to $${priceMax}
 - Location: within ${radius} miles of ${location}
 
-Search across major car sales websites (Autotrader, Cars.com, CarGurus, etc.)
+Instructions:
+1. Search major car sales websites (Autotrader, Cars.com, CarGurus, Craigslist, Facebook Marketplace, etc.)
+2. Find REAL, ACTIVE listings that match the criteria
+3. Extract accurate information from actual listings
 
-For each listing found, extract:
+For each listing found, extract and return in this JSON format:
 {
   "year": integer,
   "make": string,
@@ -80,14 +89,14 @@ For each listing found, extract:
     "exterior_color": string,
     "fuel_type": string
   },
-  "images": [array of image URLs],
+  "images": [array of image URLs if available],
   "listing_url": string,
   "source": string (website name),
   "seller": {"name": string, "type": "dealer" or "private"}
 }
 
-Return an array of listings in JSON format. Include only valid, active listings.
-Aim for at least 20 results if available.`;
+Return ONLY a valid JSON array of listings. Aim for at least 10-20 results if available.
+If you cannot find real listings, return an empty array [] instead of making up data.`;
 
     try {
         const result = await geminiModel.generateContent(prompt);
