@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router-dom';
 import { Search, GitCompare } from 'lucide-react';
+import logo from '../../assets/logo.png';
 
 export default function MainLayout() {
     return (
@@ -8,9 +9,12 @@ export default function MainLayout() {
                 <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
                     <Link
                         to="/"
-                        className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent"
+                        className="flex items-center gap-3"
                     >
-                        AutoScout
+                        <img src={logo} alt="AutoScout Logo" className="w-8 h-8 object-contain" />
+                        <span className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
+                            AutoScout
+                        </span>
                     </Link>
                     <div className="flex items-center gap-6">
                         <Link
