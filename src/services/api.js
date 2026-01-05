@@ -14,12 +14,21 @@ export async function searchCars(params) {
         body: JSON.stringify(params),
     });
 
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.details || error.error || 'Search failed');
+    const text = await response.text();
+    let data;
+
+    try {
+        data = text ? JSON.parse(text) : {};
+    } catch (e) {
+        console.error('Failed to parse API response:', text);
+        throw new Error('Invalid API response format');
     }
 
-    return response.json();
+    if (!response.ok) {
+        throw new Error(data.details || data.error || `Request failed with status ${response.status}`);
+    }
+
+    return data;
 }
 
 /**
