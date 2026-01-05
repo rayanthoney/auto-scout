@@ -133,13 +133,6 @@ export default function ResultsPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                {console.log('ResultsPage Render:', {
-                    resultsLength: results.length,
-                    filteredLength: filteredResults.length,
-                    paginatedLength: paginatedResults.length,
-                    currentPage,
-                    totalPages
-                })}
                 {/* Filter Sidebar */}
                 <div className="lg:col-span-1">
                     <FilterPanel />

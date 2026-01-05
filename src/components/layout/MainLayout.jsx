@@ -9,27 +9,29 @@ export default function MainLayout() {
                 <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
                     <Link
                         to="/"
-                        className="flex items-center gap-3"
+                        className="flex items-center gap-2 md:gap-3"
                     >
                         <img src={logo} alt="AutoScout Logo" className="w-8 h-8 object-contain" />
-                        <span className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
+                        <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-500 bg-clip-text text-transparent">
                             AutoScout
                         </span>
                     </Link>
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-4 md:gap-6">
                         <Link
                             to="/search"
-                            className="flex items-center gap-2 text-neutral-700 hover:text-primary-600 transition-colors font-medium"
+                            className="flex items-center gap-2 text-neutral-700 hover:text-primary-600 transition-colors font-medium p-2 md:p-0 rounded-lg hover:bg-neutral-50 md:hover:bg-transparent"
+                            title="Search"
                         >
-                            <Search size={18} />
-                            <span>Search</span>
+                            <Search size={20} className="md:w-[18px] md:h-[18px]" />
+                            <span className="hidden md:inline">Search</span>
                         </Link>
                         <Link
                             to="/compare"
-                            className="flex items-center gap-2 text-neutral-700 hover:text-primary-600 transition-colors font-medium"
+                            className="flex items-center gap-2 text-neutral-700 hover:text-primary-600 transition-colors font-medium p-2 md:p-0 rounded-lg hover:bg-neutral-50 md:hover:bg-transparent"
+                            title="Compare"
                         >
-                            <GitCompare size={18} />
-                            <span>Compare</span>
+                            <GitCompare size={20} className="md:w-[18px] md:h-[18px]" />
+                            <span className="hidden md:inline">Compare</span>
                         </Link>
                     </div>
                 </nav>
