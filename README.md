@@ -24,7 +24,7 @@ Version 0.0.0
 <!-- ![Project Banner](https://via.placeholder.com/1200x400/0066cc/ffffff?text=AutoScout) -->
 
 <!-- ![Banner](.github/images/banner.png) -->
-<img src=".github/images/logo.png" width="500"/>
+<img src=".github/images/hero.png" width="500"/>
 
 </div>
 
@@ -54,7 +54,7 @@ Version 0.0.0
 
 <!-- ![Project Screenshot](https://via.placeholder.com/800x450/0066cc/ffffff?text=Main+Screenshot) -->
 
-<img src=".github/images/logo.png" width="100"/>
+<img src=".github/images/autoScout.png" width="100"/>
 
 **AutoScout** is an AI-powered web application that aggregates car sales data from multiple sources using Google Gemini Pro, enabling users to quickly compare prices, availability, and details for specific vehicle models across different platforms.
 
